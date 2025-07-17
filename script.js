@@ -4,6 +4,8 @@ const sizeButton = document.querySelector('.menu-size').addEventListener('click'
 const blackButton = document.querySelector('.menu-black').addEventListener('click', switchPen);
 const randomButton = document.querySelector('.menu-random').addEventListener('click', switchPen);
 const eraserButton = document.querySelector('.menu-eraser').addEventListener('click', switchPen);
+const currentPenDiv = document.querySelector('.current-pen')
+
 
 const PENMODE = {
     BLACK: 'black',
@@ -42,13 +44,17 @@ function getRandomColor() {
 }
 
 function onHover(event) {
-    event.target.style.backgroundColor = currentPen == 'random' ? getRandomColor() : currentPen
+    const penColor = currentPen == 'random' ? getRandomColor() : currentPen
+    event.target.style.backgroundColor = penColor;
+    
+    currentPenDiv.style.backgroundColor = penColor
 
     if (currentPen == 'random' || currentPen == 'black') {
         let currentOpacity = parseFloat(event.target.style.opacity)
         if (currentOpacity < 1) {
             currentOpacity += 0.1
             event.target.style.opacity = currentOpacity
+
         }
     } else {
         event.target.style.opacity = 0.1
@@ -78,11 +84,13 @@ function clearGrid() {
 function switchPen(event) {
     console.log(event.target.className)
     if (event.target.className == 'menu-black') {
+        currentPenDiv.style.backgroundColor = 'black'
         currentPen = PENMODE.BLACK
     } else if (event.target.className == 'menu-random') {
         currentPen = PENMODE.RANDOM
     }
     else if (event.target.className == 'menu-eraser') {
+        currentPenDiv.style.backgroundColor = 'white'
         currentPen = PENMODE.ERASER
     }
     else {
