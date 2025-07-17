@@ -1,0 +1,21 @@
+
+body {
+    background-color: #a08383;
+}
+
+.grid-container {
+  width: 90vmin;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #000;
+}
+
+/* Base style for grid items */
+.square-grid {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  aspect-ratio: 1 / 1;
+  background-color: white;
+  transition: background-color 0.3s;
+}
